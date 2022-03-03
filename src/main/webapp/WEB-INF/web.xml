@@ -3,31 +3,16 @@
 xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 <servlet>
-<servlet-name>Main</servlet-name>
-<servlet-class>MainPage</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>Main</servlet-name>
-<url-pattern>/main</url-pattern>
-</servlet-mapping>
-
-<session-config>
-<session-timeout>1800</session-timeout>
-</session-config>
-
-
-<servlet>
 <servlet-name>init</servlet-name>
 <servlet-class>InitServlet</servlet-class>
 <init-param>
 <param-name>user</param-name>
-<param-value>Man</param-value>
+<param-value>Manuchehr</param-value>
 </init-param>
 <init-param>
 <param-name>age</param-name>
 <param-value>23</param-value>
 </init-param>
-<load-on-startup>1</load-on-startup>
 </servlet>
 <servlet-mapping>
 <servlet-name>init</servlet-name>
@@ -36,7 +21,32 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0"
 
 <context-param>
 <param-name>email</param-name>
-<param-value>manuchehrbarotov1998gmail.com</param-value>
+<param-value>manuchehrbarotov1998@gmail.com</param-value>
 </context-param>
 
+<login-config>
+<auth-method>FORM</auth-method>
+<form-login-config>
+<form-login-page>/first.jsp</form-login-page>
+<form-error-page>/Error.jsp</form-error-page>
+</form-login-config>
+</login-config>
+
+<security-constraint>
+<web-resource-collection>
+<web-resource-name>SecureJsp</web-resource-name>
+<url-pattern>/sec.jsp</url-pattern>
+</web-resource-collection>
+<auth-constraint>
+<role-name>admin</role-name>
+</auth-constraint>
+</security-constraint>
+
+<security-role>
+<role-name>admin</role-name>
+</security-role>
+
+<security-role>
+<role-name>root</role-name>
+</security-role>
 </web-app>
