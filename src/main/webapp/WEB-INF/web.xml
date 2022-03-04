@@ -2,6 +2,9 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<welcome-file-list>
+<welcome-file>/index.html</welcome-file>
+</welcome-file-list>
 <servlet>
 <servlet-name>init</servlet-name>
 <servlet-class>InitServlet</servlet-class>
@@ -25,11 +28,8 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0"
 </context-param>
 
 <login-config>
-<auth-method>FORM</auth-method>
-<form-login-config>
-<form-login-page>/first.jsp</form-login-page>
-<form-error-page>/Error.jsp</form-error-page>
-</form-login-config>
+<auth-method>BASIC</auth-method>
+<realm-name>JspServlet</realm-name>
 </login-config>
 
 <security-constraint>
@@ -49,4 +49,26 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0"
 <security-role>
 <role-name>root</role-name>
 </security-role>
+
+<servlet>
+<servlet-name>html</servlet-name>
+<jsp-file>/index.html</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>html</servlet-name>
+<url-pattern>/MyHtml</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>auth</servlet-name>
+<servlet-class>AuthServlet</servlet-class>
+<security-role-ref>
+<role-name>Person</role-name>
+<role-link>admin</role-link>
+</security-role-ref>
+</servlet>
+<servlet-mapping>
+<servlet-name>auth</servlet-name>
+<url-pattern>/auth</url-pattern>
+</servlet-mapping>
 </web-app>
